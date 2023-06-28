@@ -30,9 +30,12 @@ Application* CreateNewApp(char* _name, float _cost, int _downloads){
 	return newApp;
 }
 
-
-
-
-
-Application* DuplicateApp(Application* source){}
+Application* DuplicateApp(Application* source){
+	/*
+	* I will simply use the function from the previous excercise,
+	* and suplly it the fields from the source as paramaters
+	*/
+	Application* duplicatedApp = CreateNewApp(source->name, source->cost, source->downloads);
+	return duplicatedApp;
+}
 void FreeApp(Application* app){}
