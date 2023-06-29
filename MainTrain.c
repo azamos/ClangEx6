@@ -108,38 +108,38 @@ int main()
 	if( 0 == compareAppStoreDifferentAddress( &s, myStore ) )
 		printf( "Failed Ex4 - DuplicateStore function (-8)\n" );
 
-	////=============== EX 5 ================// 
-	//SortByCost( &s2 );
-	//if( 0 == checkSortedByCostsArray( &s2, arr1 ) )
-	//	printf( "Failed Ex5 - SortByCost function (-8)\n" );
+	//=============== EX 5 ================// 
+	SortByCost( &s2 );
+	if( 0 == checkSortedByCostsArray( &s2, arr1 ) )
+		printf( "Failed Ex5 - SortByCost function (-8)\n" );
 
-	////=============== EX 6 ================// 
-	//SortByName( &s2 );
-	//if( 0 == checkSortedByCostsArray( &s2, arr2 ) )
-	//	printf( "Failed Ex6 - SortByName function (-8)\n" );
+	//=============== EX 6 ================// 
+	SortByName( &s2 );
+	if( 0 == checkSortedByCostsArray( &s2, arr2 ) )
+		printf( "Failed Ex6 - SortByName function (-8)\n" );
 
-	////=============== EX 7 ================// 
-	//sum = TotalDownloads( &s2 );
-	//if( sum != 107 )
-	//	printf( "Failed Ex7 - TotalDownloads function (-8)\n" );
+	//=============== EX 7 ================// 
+	sum = TotalDownloads( &s2 );
+	if( sum != 107 )
+		printf( "Failed Ex7 - TotalDownloads function (-8)\n" );
 
-	////=============== EX 8 ================// 
-	//if( 1 != UpdateDownloads( &s2, "ynet", 10 ) )
-	//	printf( "Failed Ex8 - UpdateDownloads function (-8)\n" );
-	//else if( s2.apps[3]->downloads != 42 )
-	//	printf( "Failed Ex8 - UpdateDownloads function (-8)\n" );
+	//=============== EX 8 ================// 
+	if( 1 != UpdateDownloads( &s2, "ynet", 10 ) )
+		printf( "Failed Ex8 - UpdateDownloads function (-8)\n" );
+	else if( s2.apps[3]->downloads != 42 )
+		printf( "Failed Ex8 - UpdateDownloads function (-8)\n" );
 
-	////=============== EX 9 ================// 
-	//if( 0 != UpdateCost( &s2, "lala", 4.5 ) )
-	//	printf( "Failed Ex9 - UpdateCost function (-8)\n" );
+	//=============== EX 9 ================// 
+	if( 0 != UpdateCost( &s2, "lala", 4.5 ) )
+		printf( "Failed Ex9 - UpdateCost function (-8)\n" );
 
-	////=============== EX 10 ================// 
-	//if( 20 != GetAppDownloads( &s2, "sport5" ) )
-	//	printf( "Failed Ex10 - GetAppDownloads function (-8)\n" );
+	//=============== EX 10 ================// 
+	if( 20 != GetAppDownloads( &s2, "sport5" ) )
+		printf( "Failed Ex10 - GetAppDownloads function (-8)\n" );
 
-	////=============== EX 11+12 ================// 
-	//FreeAppStore( myStore );
-	//
+	//=============== EX 11+12 ================// 
+	FreeAppStore( myStore );
+	
 	//=============== FINISH ================// 
 	printf( "\n\ndone\n" );
 

@@ -146,10 +146,81 @@ AppStore* DuplicateStore(AppStore* source){
 	duplicateStore->apps = dup_apps;
 	return duplicateStore;
 }
-void SortByCost(AppStore* as){}
-void SortByName(AppStore* as){}
-int TotalDownloads(AppStore* as){}
-int UpdateDownloads(AppStore* as, char* name, int toAdd){}
-int UpdateCost(AppStore* as, char* name, float newCost){}
-int GetAppDownloads(AppStore* as, char* name){}
-void FreeAppStore(AppStore* as){}
+
+void SortByCost(AppStore* as){
+	Application** apps = as->apps;
+	int n = as->num_of_apps;
+	/*
+	* Buuble-sort, comparison function here is on the costs
+	*/
+	for (int i = 0; i < n-1; i++) {
+		for(int j=0;j<n-i-1;j++){
+			if ((apps[j]->cost) > (apps[j + 1]->cost)) {
+				Application* temp = apps[j];
+				apps[j] = apps[j + 1];
+				apps[j + 1] = temp;
+			}
+		}
+	}
+}
+
+
+void SortByName(AppStore* as){
+	Application** apps = as->apps;
+	int n = as->num_of_apps;
+	/*
+	* Buuble-sort, comparison func is str_cmp on the names
+	*/
+	for (int i = 0; i < n - 1; i++) {
+		for (int j = 0; j < n - i - 1; j++) {
+			if (strcmp((apps[j]->name), (apps[j + 1]->name))>0) {
+				Application* temp = apps[j];
+				apps[j] = apps[j + 1];
+				apps[j + 1] = temp;
+			}
+		}
+	}
+}
+
+int TotalDownloads(AppStore* as){
+	int sum = 0;
+	for (int i = 0; i < as->num_of_apps; i++) {
+		sum += as->apps[i]->downloads;
+	}
+	return sum;
+}
+
+int UpdateDownloads(AppStore* as, char* name, int toAdd){
+	for (int i = 0; i < as->num_of_apps; i++) {
+		if (strcmp(as->apps[i]->name, name) == 0) {
+			as->apps[i]->downloads += toAdd;
+			return 1;
+		}
+	}
+	return 0;
+}
+int UpdateCost(AppStore* as, char* name, float newCost){
+	for (int i = 0; i < as->num_of_apps; i++) {
+		if (strcmp(as->apps[i]->name, name) == 0) {
+			as->apps[i]->cost = newCost;
+			return 1;
+		}
+	}
+	return 0;
+}
+int GetAppDownloads(AppStore* as, char* name){
+	for (int i = 0; i < as->num_of_apps; i++) {
+		if (strcmp(as->apps[i]->name, name) == 0) {
+			return as->apps[i]->downloads;
+		}
+	}
+	return 0;
+}
+void FreeAppStore(AppStore* as){
+	for (int i = 0; i < as->num_of_apps; i++) {
+		FreeApp(as->apps[i]);
+	}
+	free(as->name);
+	free(as->apps);
+	free(as);
+}

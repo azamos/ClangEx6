@@ -38,4 +38,7 @@ Application* DuplicateApp(Application* source){
 	Application* duplicatedApp = CreateNewApp(source->name, source->cost, source->downloads);
 	return duplicatedApp;
 }
-void FreeApp(Application* app){}
+void FreeApp(Application* app){
+	free(app->name);
+	free(app);
+}
