@@ -19,7 +19,7 @@ Application* CreateNewApp(char* _name, float _cost, int _downloads){
 		free(newApp);//Was already allocated, have to free it.
 		return NULL;
 	}
-	strcpy_s(namePointer, (n + 1), _name);
+	strcpy(namePointer, _name);
 	/*
 	* Now, to initialize the fields
 	*/

@@ -1,3 +1,10 @@
+/*
+* name: Amos Zohar
+* id: 311402812
+* date: 29/06/2023, 19:28
+*/
+
+
 #include "AppStore.h"
 #define DEFAULT_NAME "Colman Store"
 
@@ -23,7 +30,7 @@ AppStore* AddApp(AppStore* applicationStore, Application* app){
 			free(applicationStore);
 			return NULL;
 		}
-		strcpy_s(name, n + 1, DEFAULT_NAME);
+		strcpy(name,DEFAULT_NAME);
 		applicationStore->name = name;
 		/*
 		* End of name field shenanigans
@@ -119,7 +126,7 @@ AppStore* DuplicateStore(AppStore* source){
 		free(duplicateStore);
 		return NULL;
 	}
-	strcpy_s(dup_name, strlen(source->name) + 1, source->name);
+	strcpy(dup_name,source->name);
 	duplicateStore->name = dup_name;
 
 	//3
