@@ -97,7 +97,55 @@ AppStore* AddApp(AppStore* applicationStore, Application* app){
 }
 
 
-AppStore* DuplicateStore(AppStore* source){}
+AppStore* DuplicateStore(AppStore* source){
+	/*
+	* Steps:
+	* 1.Allocate enough memory for the 3 fields: Application** apps,
+	* int num_of_aps,char* name.Essentialy, 2 pointers and an integer.
+	* 2.allocate memory for name, and str_cpy from source->name.
+	* 3.set duplicate's num_of_apps to be the same as the source's.
+	* 4.now, allocate num_of_apps times sizeof(Application*) for the apps themselves.
+	* 5.use DuplicateApplication function to copy the apps.
+	* 6.return the duplicate store.
+	*/
+
+	//1.
+	AppStore* duplicateStore = (AppStore*)malloc(sizeof(Application**) + sizeof(int) + sizeof(char*));
+	if (duplicateStore == NULL) {
+		return NULL;
+	}
+
+	//2
+	char* dup_name = (char*)malloc((strlen(source->name) + 1) * sizeof(char));
+	if (!dup_name) {
+		free(duplicateStore);
+		return NULL;
+	}
+	strcpy_s(dup_name, strlen(source->name) + 1, source->name);
+	duplicateStore->name = dup_name;
+
+	//3
+	duplicateStore->num_of_apps = source->num_of_apps;
+
+	//4
+	Application** dup_apps = (Application**)malloc(duplicateStore->num_of_apps * sizeof(Application*));
+	
+	//5
+	for (int i = 0; i < duplicateStore->num_of_apps; i++) {
+		Application* dupApp = DuplicateApp(source->apps[i]);
+		if (dupApp == NULL) {
+			for (int j = 0; j < i; j++) {
+				free(dup_apps[i]);
+			}
+			free(dup_apps);
+			free(dup_name);
+			free(duplicateStore);
+		}
+		dup_apps[i] = dupApp;
+	}
+	duplicateStore->apps = dup_apps;
+	return duplicateStore;
+}
 void SortByCost(AppStore* as){}
 void SortByName(AppStore* as){}
 int TotalDownloads(AppStore* as){}

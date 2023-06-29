@@ -103,10 +103,10 @@ int main()
 	if( 0 == checkApp( tmpStore, &app1 ) )
 		printf( "Failed Ex3 - AddApp function (-8)\n" );
 
-	////=============== EX 4 ================// 
-	//myStore = DuplicateStore( &s );
-	//if( 0 == compareAppStoreDifferentAddress( &s, myStore ) )
-	//	printf( "Failed Ex4 - DuplicateStore function (-8)\n" );
+	//=============== EX 4 ================// 
+	myStore = DuplicateStore( &s );
+	if( 0 == compareAppStoreDifferentAddress( &s, myStore ) )
+		printf( "Failed Ex4 - DuplicateStore function (-8)\n" );
 
 	////=============== EX 5 ================// 
 	//SortByCost( &s2 );
