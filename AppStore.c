@@ -9,9 +9,7 @@ AppStore* AddApp(AppStore* applicationStore, Application* app){
 		* First, need to allocate memory the size of all of
 		* the fields in AppStore, as specified in the header file
 		*/
-		applicationStore = (AppStore*)malloc(
-			sizeof(Application**)+sizeof(int)+sizeof(char*)
-		);
+		applicationStore = (AppStore*)malloc(sizeof(AppStore));
 		if (applicationStore == NULL) {
 			return NULL;
 		}
@@ -110,7 +108,7 @@ AppStore* DuplicateStore(AppStore* source){
 	*/
 
 	//1.
-	AppStore* duplicateStore = (AppStore*)malloc(sizeof(Application**) + sizeof(int) + sizeof(char*));
+	AppStore* duplicateStore = (AppStore*)malloc(sizeof(AppStore));
 	if (duplicateStore == NULL) {
 		return NULL;
 	}
@@ -220,7 +218,7 @@ void FreeAppStore(AppStore* as){
 	for (int i = 0; i < as->num_of_apps; i++) {
 		FreeApp(as->apps[i]);
 	}
-	free(as->name);
 	free(as->apps);
+	free(as->name);
 	free(as);
 }
