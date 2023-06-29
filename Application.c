@@ -6,7 +6,7 @@ Application* CreateNewApp(char* _name, float _cost, int _downloads){
 	* an instance of Application is made of a char pointer, a float and an int,
 	* thus the required memory size is as written in the commas below:
 	*/
-	Application* newApp = malloc(sizeof(char*) + sizeof(float) + sizeof(int));
+	Application* newApp = (Application*)malloc(sizeof(char*) + sizeof(float) + sizeof(int));
 	if (newApp == NULL) {
 		return NULL;
 	}
@@ -14,7 +14,7 @@ Application* CreateNewApp(char* _name, float _cost, int _downloads){
 	* Now, to allocate space for the name(not to be confused with _name)
 	* property of this instance of Application
 	*/
-	char* namePointer = malloc((n + 1) * sizeof(char));//+1, for '/0';
+	char* namePointer = (char*)malloc((n + 1) * sizeof(char));//+1, for '/0';
 	if (namePointer == NULL) {
 		free(newApp);//Was already allocated, have to free it.
 		return NULL;

@@ -9,7 +9,7 @@ AppStore* AddApp(AppStore* applicationStore, Application* app){
 		* First, need to allocate memory the size of all of
 		* the fields in AppStore, as specified in the header file
 		*/
-		applicationStore = malloc(
+		applicationStore = (AppStore*)malloc(
 			sizeof(Application**)+sizeof(int)+sizeof(char*)
 		);
 		if (applicationStore == NULL) {
@@ -20,7 +20,7 @@ AppStore* AddApp(AppStore* applicationStore, Application* app){
 		* and copies the letters into it.
 		*/
 		int n = strlen(DEFAULT_NAME);
-		char* name = malloc((n + 1) * sizeof(char));
+		char* name = (char*)malloc((n + 1) * sizeof(char));
 		if (name == NULL) {
 			free(applicationStore);
 			return NULL;
@@ -31,6 +31,7 @@ AppStore* AddApp(AppStore* applicationStore, Application* app){
 		* End of name field shenanigans
 		*/
 		applicationStore->num_of_apps = 0;
+		applicationStore->apps = NULL;
 		/*
 		* From here on, we need to do the same as in the case where applicationStore
 		* isn't NULL, but there is no application in the store with the name
